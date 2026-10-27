@@ -1,0 +1,729 @@
+[
+ {
+  "id": "01-capa",
+  "eyebrow": "Desperdício de alimentos",
+  "titulo": "Comida no lixo? Aqui não!",
+  "cor": "leaf",
+  "cena": [
+   [
+    "fork_and_knife_with_plate",
+    50,
+    52,
+    46,
+    0
+   ],
+   [
+    "tomato",
+    20,
+    24,
+    20,
+    -12
+   ],
+   [
+    "banana",
+    80,
+    22,
+    20,
+    14
+   ],
+   [
+    "bread",
+    16,
+    78,
+    19,
+    -8
+   ],
+   [
+    "broccoli",
+    84,
+    76,
+    19,
+    10
+   ],
+   [
+    "wastebasket",
+    50,
+    12,
+    13,
+    0
+   ]
+  ],
+  "pontos": [
+   "O que é desperdício de alimentos",
+   "Como ele acontece em casa e na escola",
+   "O que a nossa turma pode fazer"
+  ],
+  "fala": "Olá, turma! Eu sou a Tita, a tomatinha, e vou ajudar a Antonella a contar uma história séria, mas que tem solução: o desperdício de comida. Nós vamos descobrir quanta comida vai parar no lixo, por que isso acontece nas nossas casas e na nossa escola, e o que cada um de nós pode fazer para mudar. No final, tem um quiz valendo pontos. Então, prestem atenção!"
+ },
+ {
+  "id": "02-perda",
+  "eyebrow": "Para começar",
+  "titulo": "Perda ou desperdício?",
+  "cor": "sun",
+  "widget": "perda",
+  "cena": [
+   [
+    "tractor",
+    24,
+    30,
+    28,
+    -6
+   ],
+   [
+    "delivery_truck",
+    72,
+    28,
+    26,
+    6
+   ],
+   [
+    "convenience_store",
+    26,
+    74,
+    24,
+    0
+   ],
+   [
+    "house",
+    74,
+    74,
+    26,
+    0
+   ]
+  ],
+  "pontos": [
+   "Toque nos cartões para descobrir a diferença"
+  ],
+  "fala": "Os cientistas usam duas palavras diferentes. Perda é quando a comida estraga antes de chegar até nós: na colheita, no armazém ou no caminhão. Desperdício é quando a comida está boa, chegou no mercado, no restaurante, na escola ou na nossa casa, e mesmo assim vai para o lixo. Nesta pesquisa, a gente vai falar principalmente do desperdício, porque é nele que nós podemos ajudar todos os dias."
+ },
+ {
+  "id": "03-tamanho",
+  "eyebrow": "O tamanho do problema",
+  "titulo": "Mais de 1 bilhão de refeições no lixo por dia",
+  "cor": "tomato",
+  "widget": "contador",
+  "cena": [
+   [
+    "globe_showing_americas",
+    50,
+    50,
+    46,
+    0
+   ],
+   [
+    "pot_of_food",
+    18,
+    22,
+    18,
+    -10
+   ],
+   [
+    "bread",
+    82,
+    24,
+    17,
+    10
+   ],
+   [
+    "cooked_rice",
+    18,
+    80,
+    17,
+    8
+   ],
+   [
+    "red_apple",
+    82,
+    78,
+    17,
+    -8
+   ]
+  ],
+  "pontos": [
+   "Em 2022, o mundo jogou fora cerca de 1 bilhão e 50 milhões de toneladas de comida",
+   "É quase 1 de cada 5 porções que chegam até as pessoas",
+   "Ao mesmo tempo, cerca de 783 milhões de pessoas passaram fome"
+  ],
+  "fala": "Agora, segura essa. Segundo a ONU, em dois mil e vinte e dois o mundo jogou fora mais de um bilhão de toneladas de comida. Isso dá mais de um bilhão de refeições por dia, ou seja, quase uma de cada cinco porções que chegam até as pessoas. E o mais triste: no mesmo ano, cerca de setecentos e oitenta milhões de pessoas passaram fome. Olhem o contador ao lado. Ele mostra quanta comida o mundo está jogando fora enquanto vocês assistem a este slide."
+ },
+ {
+  "id": "04-onde",
+  "eyebrow": "Onde acontece",
+  "titulo": "A maior parte começa dentro de casa",
+  "cor": "sky",
+  "widget": "onde",
+  "cena": [
+   [
+    "house",
+    30,
+    40,
+    34,
+    -4
+   ],
+   [
+    "cook",
+    72,
+    34,
+    24,
+    6
+   ],
+   [
+    "shopping_cart",
+    70,
+    76,
+    22,
+    -6
+   ],
+   [
+    "wastebasket",
+    28,
+    80,
+    16,
+    0
+   ]
+  ],
+  "pontos": [
+   "Toque em cada barra para ver quem desperdiça mais"
+  ],
+  "fala": "E onde essa comida é jogada fora? Vocês podem se surpreender. Seis de cada dez partes do desperdício acontecem dentro das casas. Quase três partes acontecem em restaurantes, lanchonetes e refeitórios, como os das escolas. E pouco mais de uma parte acontece nos mercados. Isso quer dizer que a maior parte da solução está nas nossas mãos, na nossa cozinha e no nosso prato."
+ },
+ {
+  "id": "05-brasil",
+  "eyebrow": "E no Brasil?",
+  "titulo": "94 quilos por pessoa, todo ano",
+  "cor": "leaf",
+  "widget": "balanca",
+  "cena": [
+   [
+    "student",
+    30,
+    58,
+    30,
+    -4
+   ],
+   [
+    "student",
+    70,
+    58,
+    30,
+    4
+   ],
+   [
+    "cooked_rice",
+    50,
+    22,
+    22,
+    0
+   ],
+   [
+    "wastebasket",
+    50,
+    86,
+    14,
+    0
+   ]
+  ],
+  "pontos": [
+   "Estimativa da ONU para o lixo de comida das casas brasileiras",
+   "É mais do que o peso de 2 colegas de 10 anos juntos",
+   "O número vem de um estudo feito no Rio de Janeiro; o Brasil ainda está medindo melhor"
+  ],
+  "fala": "E aqui no Brasil? A ONU estima que cada brasileiro joga fora, em casa, cerca de noventa e quatro quilos de comida por ano. Para comparar: uma criança de dez anos pesa mais ou menos trinta e dois quilos. Então, cada pessoa joga fora, por ano, quase o peso de três colegas da nossa turma! Esse número veio de um estudo feito na cidade do Rio de Janeiro, e os pesquisadores ainda estão medindo o Brasil inteiro com mais cuidado."
+ },
+ {
+  "id": "06-campeoes",
+  "eyebrow": "Pesquisa da Embrapa",
+  "titulo": "O que mais vai para o lixo no Brasil",
+  "cor": "sun",
+  "widget": "campeoes",
+  "cena": [
+   [
+    "cooked_rice",
+    28,
+    30,
+    28,
+    -8
+   ],
+   [
+    "cut_of_meat",
+    72,
+    30,
+    26,
+    8
+   ],
+   [
+    "pot_of_food",
+    28,
+    74,
+    26,
+    6
+   ],
+   [
+    "poultry_leg",
+    72,
+    74,
+    26,
+    -6
+   ]
+  ],
+  "pontos": [
+   "Arroz, carne, feijão e frango lideram a lista",
+   "Juntos, são quase 3 de cada 4 partes do que é jogado fora",
+   "Uma família brasileira desperdiça perto de 130 quilos por ano"
+  ],
+  "fala": "Uma pesquisa da Embrapa com a Fundação Getúlio Vargas descobriu quais alimentos os brasileiros mais jogam fora. Adivinhem quem ganhou? O arroz, em primeiro lugar. Depois vêm a carne, o feijão e o frango. Ou seja: o famoso arroz com feijão, que a gente come quase todo dia, é justamente o que mais sobra na panela. Segundo essa pesquisa, uma família brasileira desperdiça perto de cento e trinta quilos de comida por ano."
+ },
+ {
+  "id": "07-casa",
+  "eyebrow": "Em casa",
+  "titulo": "Por que a comida de casa vai para o lixo",
+  "cor": "tomato",
+  "widget": "casa",
+  "cena": [
+   [
+    "house",
+    50,
+    46,
+    40,
+    0
+   ],
+   [
+    "shopping_cart",
+    18,
+    22,
+    18,
+    -10
+   ],
+   [
+    "thermometer",
+    84,
+    24,
+    16,
+    12
+   ],
+   [
+    "calendar",
+    18,
+    80,
+    17,
+    6
+   ],
+   [
+    "pot_of_food",
+    84,
+    78,
+    18,
+    -6
+   ]
+  ],
+  "pontos": [
+   "Toque em cada problema para ver a solução"
+  ],
+  "fala": "Por que tanta comida vai para o lixo em casa? Os motivos mais comuns são: comprar mais do que precisa, sem lista. Guardar do jeito errado, e o alimento estraga. Esquecer coisas no fundo da geladeira. Fazer comida demais. Não aproveitar as sobras, as cascas e os talos. E confundir a data de validade. A boa notícia é que cada um desses problemas tem uma solução simples. Toque nos cartões para descobrir."
+ },
+ {
+  "id": "08-escola",
+  "eyebrow": "Na escola",
+  "titulo": "O que acontece com a merenda",
+  "cor": "sky",
+  "cena": [
+   [
+    "school",
+    50,
+    40,
+    40,
+    0
+   ],
+   [
+    "bento_box",
+    18,
+    78,
+    20,
+    -8
+   ],
+   [
+    "student",
+    50,
+    82,
+    22,
+    0
+   ],
+   [
+    "alarm_clock",
+    84,
+    76,
+    16,
+    10
+   ],
+   [
+    "green_salad",
+    16,
+    22,
+    16,
+    -6
+   ],
+   [
+    "sandwich",
+    84,
+    22,
+    16,
+    8
+   ]
+  ],
+  "pontos": [
+   "O programa de merenda do Brasil alimenta cerca de 40 milhões de alunos",
+   "Nutricionistas consideram aceitável sobrar até 10% da comida servida",
+   "Uma escola pública de São Paulo mediu 11,3%: acima do limite",
+   "Causas: prato muito cheio, pressa do recreio, lanche perto da merenda, não querer experimentar"
+  ],
+  "fala": "E nas escolas? O programa de alimentação escolar do Brasil serve merenda para cerca de quarenta milhões de alunos. É um dos maiores do mundo! Os nutricionistas dizem que é aceitável sobrar até dez por cento da comida servida. Mas, em muitas escolas, sobra mais. Num estudo em uma escola pública de São Paulo, com alunos de sete a dez anos, sobrou onze vírgula três por cento. Os motivos mais comuns são: prato servido maior que a fome, pressa para ir brincar no recreio, lanche de casa muito perto da hora da merenda, e não querer experimentar comidas novas."
+ },
+ {
+  "id": "09-calculadora",
+  "eyebrow": "Faça as contas",
+  "titulo": "Calculadora da nossa turma",
+  "cor": "leaf",
+  "widget": "calculadora",
+  "cena": [
+   [
+    "cooked_rice",
+    50,
+    46,
+    38,
+    0
+   ],
+   [
+    "spoon",
+    20,
+    24,
+    18,
+    -30
+   ],
+   [
+    "spiral_notepad",
+    82,
+    24,
+    18,
+    10
+   ],
+   [
+    "watermelon",
+    22,
+    80,
+    20,
+    -6
+   ],
+   [
+    "student",
+    80,
+    78,
+    20,
+    6
+   ]
+  ],
+  "pontos": [
+   "Mexa nos controles e veja quanto a turma jogaria fora em um ano letivo"
+  ],
+  "fala": "Vamos fazer uma conta juntos? Imagine que cada aluno da nossa turma deixe só duas colheres de arroz no prato, todos os dias. Parece pouco, né? Mas o ano escolar tem duzentos dias de aula. Mexam nos controles ao lado: escolham quantos alunos tem a turma e quantas colheres sobram no prato. A calculadora mostra quantos quilos iriam para o lixo em um ano, e quantas melancias isso pesaria!"
+ },
+ {
+  "id": "10-planeta",
+  "eyebrow": "Vai junto para o lixo",
+  "titulo": "Comida jogada fora é água jogada fora",
+  "cor": "sky",
+  "widget": "agua",
+  "cena": [
+   [
+    "droplet",
+    50,
+    46,
+    40,
+    0
+   ],
+   [
+    "seedling",
+    18,
+    24,
+    18,
+    -8
+   ],
+   [
+    "farmer",
+    82,
+    24,
+    20,
+    8
+   ],
+   [
+    "factory",
+    18,
+    80,
+    18,
+    -4
+   ],
+   [
+    "cloud",
+    82,
+    78,
+    20,
+    6
+   ]
+  ],
+  "pontos": [
+   "A comida desperdiçada causa de 8 a 10% dos gases que aquecem o planeta",
+   "No lixão, a comida apodrece e solta metano, um gás que esquenta a Terra"
+  ],
+  "fala": "Quando a comida vai para o lixo, vai junto tudo o que foi usado para produzi-la: a água, a terra, o trabalho do agricultor e o combustível do caminhão. Para fazer um único hambúrguer, por exemplo, são usados cerca de dois mil e quatrocentos litros de água! E tem mais: no lixão, a comida apodrece e solta um gás chamado metano, que esquenta o planeta. A ONU calcula que a comida desperdiçada causa de oito a dez por cento dos gases que aquecem a Terra. Toque nos alimentos ao lado e veja quanta água cada um gasta."
+ },
+ {
+  "id": "11-receitas",
+  "eyebrow": "Transformar em vez de jogar fora",
+  "titulo": "Super-receitas contra o lixo",
+  "cor": "sun",
+  "widget": "receitas",
+  "cena": [
+   [
+    "banana",
+    26,
+    28,
+    24,
+    -10
+   ],
+   [
+    "bread",
+    74,
+    28,
+    24,
+    10
+   ],
+   [
+    "broccoli",
+    26,
+    74,
+    24,
+    6
+   ],
+   [
+    "cooked_rice",
+    74,
+    74,
+    24,
+    -6
+   ],
+   [
+    "sparkles",
+    50,
+    50,
+    16,
+    0
+   ]
+  ],
+  "pontos": [
+   "Toque nos alimentos para ver no que eles se transformam",
+   "Na cozinha, sempre com um adulto por perto"
+  ],
+  "fala": "Muita coisa que a gente joga fora ainda pode virar uma delícia. A banana bem madurinha vira vitamina ou bolo. O pão amanhecido vira torrada ou farinha de rosca. O arroz que sobrou vira bolinho de arroz. Os talos e folhas de brócolis, beterraba e cenoura viram sopa e refogado. E as cascas e a borra de café viram adubo na composteira. Só lembrem: na cozinha, sempre com um adulto por perto!"
+ },
+ {
+  "id": "12-dicas",
+  "eyebrow": "Hora de agir",
+  "titulo": "7 superpoderes contra o desperdício",
+  "cor": "leaf",
+  "cena": [
+   [
+    "light_bulb",
+    50,
+    40,
+    30,
+    0
+   ],
+   [
+    "spiral_notepad",
+    18,
+    22,
+    18,
+    -8
+   ],
+   [
+    "calendar",
+    82,
+    22,
+    17,
+    8
+   ],
+   [
+    "bowl_with_spoon",
+    18,
+    78,
+    18,
+    6
+   ],
+   [
+    "handshake",
+    82,
+    78,
+    18,
+    -6
+   ],
+   [
+    "red_heart",
+    50,
+    86,
+    12,
+    0
+   ]
+  ],
+  "pontos": [
+   "Fazer lista antes de ir ao mercado",
+   "Primeiro que vence, primeiro que sai: o mais antigo vai para a frente",
+   "Servir pouco e repetir se ainda tiver fome",
+   "Guardar as sobras em pote fechado na geladeira",
+   "Entender a data: depois de 'consumir de preferência antes de', peça para um adulto avaliar",
+   "Experimentar antes de dizer que não gosta",
+   "Doar o que sobra: uma lei de 2020 permite que restaurantes e mercados doem comida"
+  ],
+  "fala": "Agora, os nossos sete superpoderes. Um: fazer lista antes de ir ao mercado. Dois: primeiro que vence, primeiro que sai, ou seja, o que é mais antigo vai para a frente da geladeira. Três: servir pouco e repetir, se ainda tiver fome. Quatro: guardar as sobras em pote fechado na geladeira. Cinco: entender a data da embalagem, e quando tiver dúvida, pedir para um adulto avaliar. Seis: experimentar antes de dizer que não gosta. E sete: doar. Desde dois mil e vinte, uma lei permite que restaurantes e mercados doem a comida que sobra para quem precisa."
+ },
+ {
+  "id": "13-quiz",
+  "eyebrow": "Valendo pontos",
+  "titulo": "Quiz: você é um guardião da comida?",
+  "cor": "tomato",
+  "widget": "quiz",
+  "cena": [
+   [
+    "trophy",
+    50,
+    44,
+    38,
+    0
+   ],
+   [
+    "star-struck",
+    18,
+    24,
+    18,
+    -10
+   ],
+   [
+    "thinking_face",
+    82,
+    24,
+    18,
+    10
+   ],
+   [
+    "party_popper",
+    18,
+    78,
+    18,
+    6
+   ],
+   [
+    "check_mark_button",
+    82,
+    78,
+    16,
+    -6
+   ]
+  ],
+  "pontos": [],
+  "fala": "Chegou a hora do quiz! São seis perguntas sobre tudo o que a gente aprendeu. Leiam cada pergunta, conversem com a turma e toquem na resposta certa. No final, vocês descobrem se já são guardiões da comida. Boa sorte!"
+ },
+ {
+  "id": "14-desafio",
+  "eyebrow": "Missão da turma",
+  "titulo": "Desafio Prato Limpo",
+  "cor": "leaf",
+  "widget": "desafio",
+  "cena": [
+   [
+    "fork_and_knife_with_plate",
+    50,
+    46,
+    38,
+    0
+   ],
+   [
+    "trophy",
+    18,
+    22,
+    18,
+    -8
+   ],
+   [
+    "calendar",
+    82,
+    22,
+    18,
+    8
+   ],
+   [
+    "student",
+    18,
+    80,
+    20,
+    4
+   ],
+   [
+    "cook",
+    82,
+    80,
+    20,
+    -4
+   ]
+  ],
+  "pontos": [
+   "Durante uma semana, cada um serve só o que vai comer",
+   "Marque cada dia em que o prato da turma voltou limpo",
+   "Peça à cozinha para pesar as sobras antes e depois do desafio"
+  ],
+  "fala": "E agora, a nossa missão! Eu proponho o Desafio Prato Limpo. Durante uma semana, cada um serve só o que vai comer, e repete se ainda tiver fome. A cada dia que a turma deixar o prato limpo, a gente marca aqui. Se a cozinha topar, dá até para pesar as sobras antes e depois do desafio, e ver a diferença de verdade. Lembrem: o dia vinte e nove de setembro é o Dia Internacional de Conscientização sobre a Perda e o Desperdício de Alimentos. Mas, para nós, todo dia pode ser esse dia. Obrigada, turma!"
+ },
+ {
+  "id": "15-fontes",
+  "eyebrow": "De onde vieram os dados",
+  "titulo": "Fontes da pesquisa",
+  "cor": "sky",
+  "widget": "fontes",
+  "cena": [
+   [
+    "books",
+    50,
+    46,
+    38,
+    0
+   ],
+   [
+    "magnifying_glass_tilted_left",
+    20,
+    24,
+    20,
+    -10
+   ],
+   [
+    "globe_showing_americas",
+    82,
+    24,
+    18,
+    8
+   ],
+   [
+    "spiral_notepad",
+    20,
+    80,
+    18,
+    6
+   ],
+   [
+    "light_bulb",
+    82,
+    80,
+    18,
+    -6
+   ]
+  ],
+  "pontos": [],
+  "fala": "Todos os números desta apresentação vieram de fontes confiáveis: o relatório da ONU sobre desperdício de alimentos, de dois mil e vinte e quatro, a pesquisa da Embrapa com a Fundação Getúlio Vargas, o programa nacional de alimentação escolar, estudos de nutricionistas em escolas, e a rede que calcula a pegada de água dos alimentos. Pesquisar bem é checar de onde vem cada informação. Muito obrigada pela atenção!"
+ }
+]
