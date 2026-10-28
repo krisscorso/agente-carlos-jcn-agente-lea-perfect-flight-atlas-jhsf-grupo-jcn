@@ -39,7 +39,7 @@ button:disabled{opacity:.4;cursor:default}
 @media (max-width:560px){.brand small{display:none}}
 
 .stage{flex:1;max-width:1180px;width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr;gap:30px;align-items:center;min-height:0;overflow-y:auto;padding-bottom:8px}
-@media (max-width:860px){.stage{grid-template-columns:1fr;gap:16px;align-content:start}}
+@media (max-width:860px){.stage{display:flex;flex-direction:column;gap:16px;align-items:stretch}.stage>*{flex:none}.stage .pic{width:100%;aspect-ratio:16/10}}
 
 /* Cena ilustrada */
 .pic{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/3;max-width:100%;background:var(--c-bg);transition:background .4s}
