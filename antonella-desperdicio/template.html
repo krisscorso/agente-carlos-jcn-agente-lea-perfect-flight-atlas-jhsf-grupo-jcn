@@ -146,11 +146,13 @@ button.main{background:var(--tomato);color:var(--on-accent);padding:12px 22px;mi
 .dots span i{position:absolute;inset:0;width:0;background:var(--tomato);border-radius:99px}
 label.auto{display:flex;gap:6px;align-items:center;font-weight:700;font-size:.85rem;color:var(--muted);white-space:nowrap}
 @media (max-width:560px){label.auto span{display:none}.ctrl{gap:6px}button{padding:12px}button.main{min-width:0}}
+.team{display:flex;flex-wrap:wrap;gap:8px}
+.team span{background:var(--c-bg);color:var(--fg);border:2px solid var(--c);border-radius:99px;padding:6px 14px;font:800 1.05rem/1.2 var(--display)}
 #confete{position:fixed;inset:0;pointer-events:none;z-index:20}
 @media (prefers-reduced-motion:reduce){.pic img.it,.pic.enter img.it,.playing .wave i{animation:none}.track i{transition:none}}
 </style>
 
-<div class="top"><span class="brand">Pesquisa da Antonella<small style="font:inherit"> · com a voz da Tita</small></span><span class="count" id="count">1 / 15</span></div>
+<div class="top"><span class="brand">Trabalho em grupo<small style="font:inherit"> · com a voz da Tita</small></span><span class="count" id="count">1 / 15</span></div>
 
 <main class="stage" id="stage">
   <div class="pic" id="pic"><div class="badge"><img src="img/tomato.png" alt=""><span class="wave"><i></i><i></i><i></i><i></i></span><span>Tita</span></div></div>
@@ -201,6 +203,8 @@ function beep(kind){
 const W = {};
 const flipCards = (items, onTap) => `<div class="cards">${items.map((c,n)=>`<button class="flip" data-n="${n}"><span class="ic">${img(c[0])}${esc(c[1])}</span><span class="hint">toque para ver</span><span class="back">${esc(c[2])}</span></button>`).join("")}</div>`;
 function bindFlips(el){ el.querySelectorAll(".flip").forEach(b=>b.onclick=()=>{ b.classList.toggle("on"); beep("tap"); }); }
+
+W.grupo = el => { el.innerHTML = `<div class="panel"><small>Apresentação de</small><div class="team">${["Antonella","Helena","Giuseppe","Murilo","Julia"].map(n=>`<span>${n}</span>`).join("")}</div></div>`; };
 
 W.perda = el => { el.innerHTML = flipCards([
   ["tractor","Perda","Acontece antes da comida chegar até nós: na colheita, no armazém ou no caminhão. Exemplo: frutas que amassam na viagem."],
