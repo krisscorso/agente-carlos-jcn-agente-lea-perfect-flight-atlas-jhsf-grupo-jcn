@@ -11,5 +11,5 @@ t=t.replace('fetch(`audio/${s.id}.mp3`)','fetch(asset(`audio/${s.id}.mp3`))')
 t=t.replace("<script>\nconst SLIDES","<script>\nconst A="+json.dumps(A)+";\nconst asset=p=>A[p]||p;\nconst SLIDES",1)
 head='<!doctype html>\n<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n'
 out=head+t.replace("<style>","</head><body>\n<style>",1) if False else head+"</head><body>\n"+t+"\n</body></html>"
-open("Comida-no-lixo-Antonella.html","w").write(out)
+open("Desperdicio-de-Alimentos-Antonella-Helena-Giuseppe-Murilo-Julia.html","w").write(out)
 print(len(out)//1024,"KB", t.count("asset("))
