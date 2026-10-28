@@ -264,7 +264,7 @@ W.agua = el => {
   el.innerHTML = `<div class="foods">${d.map((x,n)=>`<button class="food" data-n="${n}">${img(x[0])}<span>${x[1]}</span><b>${fmt(x[2])} L</b></button>`).join("")}</div>
   <div class="panel tank"><div class="box"><i id="lv"></i></div><div><small>Água jogada fora junto com a comida</small><span class="big" id="lit">0 L</span><small id="ban">Toque nos alimentos para jogar no lixo</small><div class="row" style="margin-top:6px"><button id="zera">Zerar</button></div></div></div>`;
   let tot=0; const up=()=>{ $("lit").textContent=fmt(tot)+" L"; $("lv").style.height=Math.min(100,tot/5000*100)+"%";
-    $("ban").textContent = tot ? `Daria para ${fmt(tot/135)} banhos de 15 minutos.` : "Toque nos alimentos para jogar no lixo"; };
+    $("ban").textContent = tot ? (b=>`Daria para ${fmt(b)} banho${Math.round(b)===1?"":"s"} de 15 minutos.`)(tot/135) : "Toque nos alimentos para jogar no lixo"; };
   el.querySelectorAll(".food").forEach(b=>b.onclick=()=>{ tot+=d[b.dataset.n][2]; beep("tap"); up(); });
   $("zera").onclick=()=>{tot=0;up();};
 };
