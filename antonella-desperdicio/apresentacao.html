@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Comida no Lixo? Aqui Não!</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: palco único como a apresentação do jogo — cena ilustrada à esquerda (em cima no celular), texto e atividade à direita; barra fixa embaixo com a voz da Tita */
+:root{
+  --bg:#F3F8EE; --surface:#FFFFFF; --soft:#E6EFDD; --line:#D3E2C6;
+  --fg:#1F3326; --muted:#5D6F60;
+  --leaf:#2E9B4E; --tomato:#E0452B; --sun:#D99A0B; --sky:#2F7FD0;
+  --leaf-bg:#DCF2DF; --tomato-bg:#FFE3DC; --sun-bg:#FFF0C7; --sky-bg:#DDEBFB;
+  --on-accent:#FFFFFF;
+  --display:"Baloo 2",ui-rounded,"Arial Rounded MT Bold",system-ui,sans-serif;
+  --body:"Nunito",ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#122018; --surface:#1A2C21; --soft:#23392B; --line:#2F4A38; --fg:#EEF6EA; --muted:#A9BEAD;
+  --leaf:#5CCB7B; --tomato:#FF7A5E; --sun:#F5C04A; --sky:#7DB6F2;
+  --leaf-bg:#1D3A27; --tomato-bg:#3D2420; --sun-bg:#3A3218; --sky-bg:#1B2E44; --on-accent:#10200F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#122018; --surface:#1A2C21; --soft:#23392B; --line:#2F4A38; --fg:#EEF6EA; --muted:#A9BEAD;
+  --leaf:#5CCB7B; --tomato:#FF7A5E; --sun:#F5C04A; --sky:#7DB6F2;
+  --leaf-bg:#1D3A27; --tomato-bg:#3D2420; --sun-bg:#3A3218; --sky-bg:#1B2E44; --on-accent:#10200F; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.5 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 0;display:flex;flex-direction:column}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.08;text-wrap:balance}
+button{font:800 1rem/1.2 var(--body);border:0;border-radius:14px;cursor:pointer;padding:12px 16px;background:var(--soft);color:var(--fg);min-height:46px}
+button:disabled{opacity:.4;cursor:default}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:1180px;width:100%;margin:0 auto;padding-bottom:10px}
+.brand{font:800 .78rem/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--leaf)}
+.count{font:800 .9rem/1 var(--body);color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+@media (max-width:560px){.brand small{display:none}}
+
+.stage{flex:1;max-width:1180px;width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr;gap:30px;align-items:center;min-height:0;overflow-y:auto;padding-bottom:8px}
+@media (max-width:860px){.stage{display:flex;flex-direction:column;gap:16px;align-items:stretch}.stage>*{flex:none}.stage .pic{width:100%;aspect-ratio:16/10}}
+
+/* Cena ilustrada */
+.pic{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/3;max-width:100%;background:var(--c-bg);transition:background .4s}
+.pic::before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 50% 45%,var(--surface) 0 22%,transparent 60%);opacity:.75}
+.pic::after{content:"";position:absolute;left:8%;right:8%;bottom:7%;height:10%;border-radius:50%;background:var(--c);opacity:.12}
+.pic img.it{position:absolute;transform:translate(-50%,-50%) rotate(var(--r));filter:drop-shadow(0 10px 14px rgba(20,40,20,.22));animation:flo 4.5s ease-in-out infinite;animation-delay:var(--d);width:var(--s);height:auto}
+.pic.enter img.it{animation:pop .6s cubic-bezier(.3,1.6,.5,1) both,flo 4.5s ease-in-out .6s infinite;animation-delay:var(--d),calc(var(--d) + .6s)}
+@keyframes flo{0%,100%{transform:translate(-50%,-50%) rotate(var(--r))}50%{transform:translate(-50%,-56%) rotate(calc(var(--r) * -1))}}
+@keyframes pop{from{transform:translate(-50%,-50%) scale(.2) rotate(var(--r));opacity:0}to{transform:translate(-50%,-50%) scale(1) rotate(var(--r));opacity:1}}
+.badge{position:absolute;left:14px;bottom:14px;background:var(--surface);color:var(--fg);border-radius:16px;padding:6px 12px 6px 6px;font:800 .9rem/1 var(--body);display:flex;gap:8px;align-items:center;z-index:2}
+.badge img{width:30px;height:30px}
+.wave{display:inline-flex;gap:3px;align-items:end;height:14px}
+.wave i{width:3px;background:var(--tomato);border-radius:2px;height:4px}
+.playing .wave i{animation:w 1s ease-in-out infinite}
+.wave i:nth-child(2){animation-delay:.15s}.wave i:nth-child(3){animation-delay:.3s}.wave i:nth-child(4){animation-delay:.45s}
+@keyframes w{0%,100%{height:4px}50%{height:14px}}
+
+/* Texto */
+.txt{display:grid;gap:14px;min-width:0;align-content:center}
+.eyebrow{margin:0;font:800 .8rem/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--c)}
+h1{font-size:clamp(1.9rem,4.2vw,3.1rem);font-weight:800}
+ul.pts{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+ul.pts li{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;font-size:1.05rem;font-weight:600}
+ul.pts li b{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;font:800 .95rem/1 var(--display);background:var(--c-bg);color:var(--c)}
+details{background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:10px 14px;font-size:.95rem}
+summary{cursor:pointer;font-weight:800;color:var(--muted)}
+details p{margin:8px 0 0}
+.erro{margin:0;color:var(--tomato);font-weight:700}
+
+/* Atividades */
+.w{display:grid;gap:10px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.flip{position:relative;text-align:left;background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:12px 14px;display:grid;gap:4px;align-content:start;min-height:96px;transition:transform .25s,border-color .25s}
+.flip:hover{transform:translateY(-2px);border-color:var(--c)}
+.flip .ic{display:flex;align-items:center;gap:8px;font:800 1.05rem/1.15 var(--display)}
+.flip .ic img{width:38px;height:38px;flex:none}
+.flip .back{font-weight:600;font-size:.95rem;color:var(--muted)}
+.flip .hint{font-size:.8rem;font-weight:800;color:var(--c);letter-spacing:.04em;text-transform:uppercase}
+.flip.on{background:var(--c-bg);border-color:var(--c)}
+.flip.on .back{color:var(--fg)}
+.flip:not(.on) .back{display:none}
+.flip.on .hint{display:none}
+
+.big{font:800 clamp(2.4rem,6vw,4rem)/1 var(--display);color:var(--c);font-variant-numeric:tabular-nums}
+.panel{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:14px 16px;display:grid;gap:6px}
+.panel small{color:var(--muted);font-weight:700}
+.bars{display:grid;gap:8px}
+.bar-b{display:grid;gap:4px;text-align:left;background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:10px 12px}
+.bar-b .lab{display:flex;justify-content:space-between;gap:8px;font-weight:800}
+.bar-b .lab span:last-child{font-family:var(--display);font-size:1.25rem;color:var(--c);font-variant-numeric:tabular-nums}
+.track{height:16px;border-radius:99px;background:var(--soft);overflow:hidden}
+.track i{display:block;height:100%;width:0;border-radius:99px;background:var(--c);transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.bar-b .det{font-size:.92rem;font-weight:600;color:var(--muted)}
+.bar-b:not(.on) .det{display:none}
+.bar-b.on{border-color:var(--c)}
+
+.kids{display:flex;align-items:end;gap:6px;flex-wrap:wrap}
+.kids figure{margin:0;display:grid;justify-items:center;gap:2px;font-weight:800;font-size:.85rem;color:var(--muted)}
+.kids img{width:64px;height:64px}
+.kids .eq{font:800 2rem/1 var(--display);color:var(--c);padding-bottom:22px}
+
+.sl{display:grid;gap:4px}
+.sl label{display:flex;justify-content:space-between;font-weight:800}
+.sl label output{font-family:var(--display);font-size:1.2rem;color:var(--c)}
+input[type=range]{width:100%;accent-color:var(--c);height:28px}
+.melons{display:flex;flex-wrap:wrap;gap:2px;min-height:34px}
+.melons img{width:30px;height:30px}
+
+.foods{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+@media (max-width:560px){.foods{grid-template-columns:repeat(3,1fr)}}
+.food{display:grid;justify-items:center;gap:2px;background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:8px 6px;font-size:.85rem}
+.food img{width:44px;height:44px;transition:transform .2s}
+.food:active img{transform:scale(.85)}
+.food b{font-family:var(--display);color:var(--c);font-size:1rem}
+.tank{display:grid;grid-template-columns:70px 1fr;gap:12px;align-items:center}
+.tank > div:last-child{display:grid;gap:2px;min-width:0}
+.tank .box{position:relative;height:90px;border-radius:12px 12px 16px 16px;border:3px solid var(--c);overflow:hidden;background:var(--surface)}
+.tank .box i{position:absolute;left:0;right:0;bottom:0;height:0;background:var(--c);opacity:.55;transition:height .5s}
+
+.quiz .q{font:800 1.3rem/1.25 var(--display)}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;background:var(--surface);border:2px solid var(--line)}
+.opt:hover:not(:disabled){border-color:var(--c)}
+.opt.ok{background:var(--leaf-bg);border-color:var(--leaf);opacity:1}
+.opt.no{background:var(--tomato-bg);border-color:var(--tomato);opacity:1}
+.fb{font-weight:700}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.go{background:var(--c);color:var(--on-accent)}
+.prog{display:flex;gap:5px}.prog span{flex:1;height:6px;border-radius:9px;background:var(--soft)}.prog span.d{background:var(--c)}
+
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.day{display:grid;justify-items:center;gap:4px;background:var(--surface);border:2px solid var(--line);padding:10px 4px}
+.day img{width:36px;height:36px;opacity:.25;filter:grayscale(1);transition:.3s}
+.day.on{background:var(--leaf-bg);border-color:var(--leaf)}
+.day.on img{opacity:1;filter:none;transform:scale(1.1)}
+
+.src{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.src li{background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:9px 12px;font-size:.92rem;font-weight:600}
+.src a{color:var(--sky);font-weight:800}
+
+/* Barra de controle */
+.bar{position:sticky;bottom:0;margin:10px calc(-1 * max(16px,env(safe-area-inset-left,0px))) 0;padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:var(--surface);border-top:2px solid var(--line)}
+.ctrl{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:10px}
+button.main{background:var(--tomato);color:var(--on-accent);padding:12px 22px;min-width:150px}
+.dots{flex:1;display:flex;gap:5px;align-items:center;min-width:0}
+.dots span{flex:1;height:8px;border-radius:99px;background:var(--soft);overflow:hidden;cursor:pointer;position:relative}
+.dots span i{position:absolute;inset:0;width:0;background:var(--tomato);border-radius:99px}
+label.auto{display:flex;gap:6px;align-items:center;font-weight:700;font-size:.85rem;color:var(--muted);white-space:nowrap}
+@media (max-width:560px){label.auto span{display:none}.ctrl{gap:6px}button{padding:12px}button.main{min-width:0}}
+.team{display:flex;flex-wrap:wrap;gap:8px}
+.team span{background:var(--c-bg);color:var(--fg);border:2px solid var(--c);border-radius:99px;padding:6px 14px;font:800 1.05rem/1.2 var(--display)}
+#confete{position:fixed;inset:0;pointer-events:none;z-index:20}
+@media (prefers-reduced-motion:reduce){.pic img.it,.pic.enter img.it,.playing .wave i{animation:none}.track i{transition:none}}
+</style>
+
+<div class="top"><span class="brand">Trabalho em grupo<small style="font:inherit"> · com a voz da Tita</small></span><span class="count" id="count">1 / 15</span></div>
+
+<main class="stage" id="stage">
+  <div class="pic" id="pic"><div class="badge"><img src="img/tomato.png" alt=""><span class="wave"><i></i><i></i><i></i><i></i></span><span>Tita</span></div></div>
+  <div class="txt">
+    <p class="eyebrow" id="eyebrow"></p>
+    <h1 id="titulo"></h1>
+    <ul class="pts" id="pts"></ul>
+    <div class="w" id="widget"></div>
+    <p class="erro" id="erro" hidden></p>
+    <details id="legenda"><summary>Ler o que a Tita fala</summary><p id="fala"></p></details>
+  </div>
+</main>
+
+<div class="bar">
+  <div class="ctrl">
+    <button id="prev" aria-label="Slide anterior">◀</button>
+    <button class="main" id="play">▶ Ouvir</button>
+    <button id="next" aria-label="Próximo slide">▶▶</button>
+    <div class="dots" id="dots" aria-label="Progresso"></div>
+    <label class="auto"><input type="checkbox" id="auto"> <span>passar sozinho</span></label>
+  </div>
+</div>
+<canvas id="confete" hidden></canvas>
+<audio id="aud" preload="auto"></audio>
+
+<script>
+const SLIDES = [{"id": "01-capa", "eyebrow": "Desperdício de alimentos", "titulo": "Comida no lixo? Aqui não!", "cor": "leaf", "cena": [["fork_and_knife_with_plate", 50, 52, 46, 0], ["tomato", 20, 24, 20, -12], ["banana", 80, 22, 20, 14], ["bread", 16, 78, 19, -8], ["broccoli", 84, 76, 19, 10], ["wastebasket", 50, 12, 13, 0]], "pontos": ["O que é desperdício de alimentos", "Como ele acontece em casa e na escola", "O que a nossa turma pode fazer"], "fala": "Olá, turma! Eu sou a Tita, a tomatinha, e vou ajudar a Antonella, a Helena, o Giuseppe, o Murilo e a Julia a contar uma história séria, mas que tem solução: o desperdício de comida. Nós vamos descobrir quanta comida vai parar no lixo, por que isso acontece nas nossas casas e na nossa escola, e o que cada um de nós pode fazer para mudar. No final, tem um quiz valendo pontos. Então, prestem atenção!", "widget": "grupo"}, {"id": "02-perda", "eyebrow": "Para começar", "titulo": "Perda ou desperdício?", "cor": "sun", "widget": "perda", "cena": [["tractor", 24, 30, 28, -6], ["delivery_truck", 72, 28, 26, 6], ["convenience_store", 26, 74, 24, 0], ["house", 74, 74, 26, 0]], "pontos": ["Toque nos cartões para descobrir a diferença"], "fala": "Os cientistas usam duas palavras diferentes. Perda é quando a comida estraga antes de chegar até nós: na colheita, no armazém ou no caminhão. Desperdício é quando a comida está boa, chegou no mercado, no restaurante, na escola ou na nossa casa, e mesmo assim vai para o lixo. Nesta pesquisa, a gente vai falar principalmente do desperdício, porque é nele que nós podemos ajudar todos os dias."}, {"id": "03-tamanho", "eyebrow": "O tamanho do problema", "titulo": "Mais de 1 bilhão de refeições no lixo por dia", "cor": "tomato", "widget": "contador", "cena": [["globe_showing_americas", 50, 50, 46, 0], ["pot_of_food", 18, 22, 18, -10], ["bread", 82, 24, 17, 10], ["cooked_rice", 18, 80, 17, 8], ["red_apple", 82, 78, 17, -8]], "pontos": ["Em 2022, o mundo jogou fora cerca de 1 bilhão e 50 milhões de toneladas de comida", "É quase 1 de cada 5 porções que chegam até as pessoas", "Ao mesmo tempo, cerca de 783 milhões de pessoas passaram fome"], "fala": "Agora, segura essa. Segundo a ONU, em dois mil e vinte e dois o mundo jogou fora mais de um bilhão de toneladas de comida. Isso dá mais de um bilhão de refeições por dia, ou seja, quase uma de cada cinco porções que chegam até as pessoas. E o mais triste: no mesmo ano, cerca de setecentos e oitenta milhões de pessoas passaram fome. Olhem o contador ao lado. Ele mostra quanta comida o mundo está jogando fora enquanto vocês assistem a este slide."}, {"id": "04-onde", "eyebrow": "Onde acontece", "titulo": "A maior parte começa dentro de casa", "cor": "sky", "widget": "onde", "cena": [["house", 30, 40, 34, -4], ["cook", 72, 34, 24, 6], ["shopping_cart", 70, 76, 22, -6], ["wastebasket", 28, 80, 16, 0]], "pontos": ["Toque em cada barra para ver quem desperdiça mais"], "fala": "E onde essa comida é jogada fora? Vocês podem se surpreender. Seis de cada dez partes do desperdício acontecem dentro das casas. Quase três partes acontecem em restaurantes, lanchonetes e refeitórios, como os das escolas. E pouco mais de uma parte acontece nos mercados. Isso quer dizer que a maior parte da solução está nas nossas mãos, na nossa cozinha e no nosso prato."}, {"id": "05-brasil", "eyebrow": "E no Brasil?", "titulo": "94 quilos por pessoa, todo ano", "cor": "leaf", "widget": "balanca", "cena": [["student", 30, 58, 30, -4], ["student", 70, 58, 30, 4], ["cooked_rice", 50, 22, 22, 0], ["wastebasket", 50, 86, 14, 0]], "pontos": ["Estimativa da ONU para o lixo de comida das casas brasileiras", "É mais do que o peso de 2 colegas de 10 anos juntos", "O número vem de um estudo feito no Rio de Janeiro; o Brasil ainda está medindo melhor"], "fala": "E aqui no Brasil? A ONU estima que cada brasileiro joga fora, em casa, cerca de noventa e quatro quilos de comida por ano. Para comparar: uma criança de dez anos pesa mais ou menos trinta e dois quilos. Então, cada pessoa joga fora, por ano, quase o peso de três colegas da nossa turma! Esse número veio de um estudo feito na cidade do Rio de Janeiro, e os pesquisadores ainda estão medindo o Brasil inteiro com mais cuidado."}, {"id": "06-campeoes", "eyebrow": "Pesquisa da Embrapa", "titulo": "O que mais vai para o lixo no Brasil", "cor": "sun", "widget": "campeoes", "cena": [["cooked_rice", 28, 30, 28, -8], ["cut_of_meat", 72, 30, 26, 8], ["pot_of_food", 28, 74, 26, 6], ["poultry_leg", 72, 74, 26, -6]], "pontos": ["Arroz, carne, feijão e frango lideram a lista", "Juntos, são quase 3 de cada 4 partes do que é jogado fora", "Uma família brasileira desperdiça perto de 130 quilos por ano"], "fala": "Uma pesquisa da Embrapa com a Fundação Getúlio Vargas descobriu quais alimentos os brasileiros mais jogam fora. Adivinhem quem ganhou? O arroz, em primeiro lugar. Depois vêm a carne, o feijão e o frango. Ou seja: o famoso arroz com feijão, que a gente come quase todo dia, é justamente o que mais sobra na panela. Segundo essa pesquisa, uma família brasileira desperdiça perto de cento e trinta quilos de comida por ano."}, {"id": "07-casa", "eyebrow": "Em casa", "titulo": "Por que a comida de casa vai para o lixo", "cor": "tomato", "widget": "casa", "cena": [["house", 50, 46, 40, 0], ["shopping_cart", 18, 22, 18, -10], ["thermometer", 84, 24, 16, 12], ["calendar", 18, 80, 17, 6], ["pot_of_food", 84, 78, 18, -6]], "pontos": ["Toque em cada problema para ver a solução"], "fala": "Por que tanta comida vai para o lixo em casa? Os motivos mais comuns são: comprar mais do que precisa, sem lista. Guardar do jeito errado, e o alimento estraga. Esquecer coisas no fundo da geladeira. Fazer comida demais. Não aproveitar as sobras, as cascas e os talos. E confundir a data de validade. A boa notícia é que cada um desses problemas tem uma solução simples. Toque nos cartões para descobrir."}, {"id": "08-escola", "eyebrow": "Na escola", "titulo": "O que acontece com a merenda", "cor": "sky", "cena": [["school", 50, 40, 40, 0], ["bento_box", 18, 78, 20, -8], ["student", 50, 82, 22, 0], ["alarm_clock", 84, 76, 16, 10], ["green_salad", 16, 22, 16, -6], ["sandwich", 84, 22, 16, 8]], "pontos": ["O programa de merenda do Brasil alimenta cerca de 40 milhões de alunos", "Nutricionistas consideram aceitável sobrar até 10% da comida servida", "Uma escola pública de São Paulo mediu 11,3%: acima do limite", "Causas: prato muito cheio, pressa do recreio, lanche perto da merenda, não querer experimentar"], "fala": "E nas escolas? O programa de alimentação escolar do Brasil serve merenda para cerca de quarenta milhões de alunos. É um dos maiores do mundo! Os nutricionistas dizem que é aceitável sobrar até dez por cento da comida servida. Mas, em muitas escolas, sobra mais. Num estudo em uma escola pública de São Paulo, com alunos de sete a dez anos, sobrou onze vírgula três por cento. Os motivos mais comuns são: prato servido maior que a fome, pressa para ir brincar no recreio, lanche de casa muito perto da hora da merenda, e não querer experimentar comidas novas."}, {"id": "09-calculadora", "eyebrow": "Faça as contas", "titulo": "Calculadora da nossa turma", "cor": "leaf", "widget": "calculadora", "cena": [["cooked_rice", 50, 46, 38, 0], ["spoon", 20, 24, 18, -30], ["spiral_notepad", 82, 24, 18, 10], ["watermelon", 22, 80, 20, -6], ["student", 80, 78, 20, 6]], "pontos": ["Mexa nos controles e veja quanto a turma jogaria fora em um ano letivo"], "fala": "Vamos fazer uma conta juntos? Imagine que cada aluno da nossa turma deixe só duas colheres de arroz no prato, todos os dias. Parece pouco, né? Mas o ano escolar tem duzentos dias de aula. Mexam nos controles ao lado: escolham quantos alunos tem a turma e quantas colheres sobram no prato. A calculadora mostra quantos quilos iriam para o lixo em um ano, e quantas melancias isso pesaria!"}, {"id": "10-planeta", "eyebrow": "Vai junto para o lixo", "titulo": "Comida jogada fora é água jogada fora", "cor": "sky", "widget": "agua", "cena": [["droplet", 50, 46, 40, 0], ["seedling", 18, 24, 18, -8], ["farmer", 82, 24, 20, 8], ["factory", 18, 80, 18, -4], ["cloud", 82, 78, 20, 6]], "pontos": ["A comida desperdiçada causa de 8 a 10% dos gases que aquecem o planeta", "No lixão, a comida apodrece e solta metano, um gás que esquenta a Terra"], "fala": "Quando a comida vai para o lixo, vai junto tudo o que foi usado para produzi-la: a água, a terra, o trabalho do agricultor e o combustível do caminhão. Para fazer um único hambúrguer, por exemplo, são usados cerca de dois mil e quatrocentos litros de água! E tem mais: no lixão, a comida apodrece e solta um gás chamado metano, que esquenta o planeta. A ONU calcula que a comida desperdiçada causa de oito a dez por cento dos gases que aquecem a Terra. Toque nos alimentos ao lado e veja quanta água cada um gasta."}, {"id": "11-receitas", "eyebrow": "Transformar em vez de jogar fora", "titulo": "Super-receitas contra o lixo", "cor": "sun", "widget": "receitas", "cena": [["banana", 26, 28, 24, -10], ["bread", 74, 28, 24, 10], ["broccoli", 26, 74, 24, 6], ["cooked_rice", 74, 74, 24, -6], ["sparkles", 50, 50, 16, 0]], "pontos": ["Toque nos alimentos para ver no que eles se transformam", "Na cozinha, sempre com um adulto por perto"], "fala": "Muita coisa que a gente joga fora ainda pode virar uma delícia. A banana bem madurinha vira vitamina ou bolo. O pão amanhecido vira torrada ou farinha de rosca. O arroz que sobrou vira bolinho de arroz. Os talos e folhas de brócolis, beterraba e cenoura viram sopa e refogado. E as cascas e a borra de café viram adubo na composteira. Só lembrem: na cozinha, sempre com um adulto por perto!"}, {"id": "12-dicas", "eyebrow": "Hora de agir", "titulo": "7 superpoderes contra o desperdício", "cor": "leaf", "cena": [["light_bulb", 50, 40, 30, 0], ["spiral_notepad", 18, 22, 18, -8], ["calendar", 82, 22, 17, 8], ["bowl_with_spoon", 18, 78, 18, 6], ["handshake", 82, 78, 18, -6], ["red_heart", 50, 86, 12, 0]], "pontos": ["Fazer lista antes de ir ao mercado", "Primeiro que vence, primeiro que sai: o mais antigo vai para a frente", "Servir pouco e repetir se ainda tiver fome", "Guardar as sobras em pote fechado na geladeira", "Entender a data: depois de 'consumir de preferência antes de', peça para um adulto avaliar", "Experimentar antes de dizer que não gosta", "Doar o que sobra: uma lei de 2020 permite que restaurantes e mercados doem comida"], "fala": "Agora, os nossos sete superpoderes. Um: fazer lista antes de ir ao mercado. Dois: primeiro que vence, primeiro que sai, ou seja, o que é mais antigo vai para a frente da geladeira. Três: servir pouco e repetir, se ainda tiver fome. Quatro: guardar as sobras em pote fechado na geladeira. Cinco: entender a data da embalagem, e quando tiver dúvida, pedir para um adulto avaliar. Seis: experimentar antes de dizer que não gosta. E sete: doar. Desde dois mil e vinte, uma lei permite que restaurantes e mercados doem a comida que sobra para quem precisa."}, {"id": "13-quiz", "eyebrow": "Valendo pontos", "titulo": "Quiz: você é um guardião da comida?", "cor": "tomato", "widget": "quiz", "cena": [["trophy", 50, 44, 38, 0], ["star-struck", 18, 24, 18, -10], ["thinking_face", 82, 24, 18, 10], ["party_popper", 18, 78, 18, 6], ["check_mark_button", 82, 78, 16, -6]], "pontos": [], "fala": "Chegou a hora do quiz! São seis perguntas sobre tudo o que a gente aprendeu. Leiam cada pergunta, conversem com a turma e toquem na resposta certa. No final, vocês descobrem se já são guardiões da comida. Boa sorte!"}, {"id": "14-desafio", "eyebrow": "Missão da turma", "titulo": "Desafio Prato Limpo", "cor": "leaf", "widget": "desafio", "cena": [["fork_and_knife_with_plate", 50, 46, 38, 0], ["trophy", 18, 22, 18, -8], ["calendar", 82, 22, 18, 8], ["student", 18, 80, 20, 4], ["cook", 82, 80, 20, -4]], "pontos": ["Durante uma semana, cada um serve só o que vai comer", "Marque cada dia em que o prato da turma voltou limpo", "Peça à cozinha para pesar as sobras antes e depois do desafio"], "fala": "E agora, a nossa missão! Eu proponho o Desafio Prato Limpo. Durante uma semana, cada um serve só o que vai comer, e repete se ainda tiver fome. A cada dia que a turma deixar o prato limpo, a gente marca aqui. Se a cozinha topar, dá até para pesar as sobras antes e depois do desafio, e ver a diferença de verdade. Lembrem: o dia vinte e nove de setembro é o Dia Internacional de Conscientização sobre a Perda e o Desperdício de Alimentos. Mas, para nós, todo dia pode ser esse dia. Obrigada, turma!"}, {"id": "15-fontes", "eyebrow": "De onde vieram os dados", "titulo": "Fontes da pesquisa", "cor": "sky", "widget": "fontes", "cena": [["books", 50, 46, 38, 0], ["magnifying_glass_tilted_left", 20, 24, 20, -10], ["globe_showing_americas", 82, 24, 18, 8], ["spiral_notepad", 20, 80, 18, 6], ["light_bulb", 82, 80, 18, -6]], "pontos": [], "fala": "Todos os números desta apresentação vieram de fontes confiáveis: o relatório da ONU sobre desperdício de alimentos, de dois mil e vinte e quatro, a pesquisa da Embrapa com a Fundação Getúlio Vargas, o programa nacional de alimentação escolar, estudos de nutricionistas em escolas, e a rede que calcula a pegada de água dos alimentos. Pesquisar bem é checar de onde vem cada informação. Muito obrigada pela atenção!"}];
+const $ = id => document.getElementById(id);
+const aud = $("aud");
+const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = n => Math.round(n).toLocaleString("pt-BR");
+const img = (n, a="") => `<img src="img/${n}.png" alt="${esc(a)}">`;
+let i = 0, playing = false, usingTTS = false, timers = [];
+
+/* ---------- Sons curtinhos (acerto, erro, toque) ---------- */
+let ac;
+function beep(kind){
+  try{
+    ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+    const notes = kind==="ok" ? [660,880,1100] : kind==="no" ? [300,220] : [520];
+    notes.forEach((f,n)=>{ const o=ac.createOscillator(), g=ac.createGain(); o.type="triangle"; o.frequency.value=f;
+      const t=ac.currentTime+n*.09; g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.18,t+.02); g.gain.exponentialRampToValueAtTime(.0001,t+.22);
+      o.connect(g).connect(ac.destination); o.start(t); o.stop(t+.25); });
+  }catch(e){}
+}
+
+/* ---------- Atividades de cada slide ---------- */
+const W = {};
+const flipCards = (items, onTap) => `<div class="cards">${items.map((c,n)=>`<button class="flip" data-n="${n}"><span class="ic">${img(c[0])}${esc(c[1])}</span><span class="hint">toque para ver</span><span class="back">${esc(c[2])}</span></button>`).join("")}</div>`;
+function bindFlips(el){ el.querySelectorAll(".flip").forEach(b=>b.onclick=()=>{ b.classList.toggle("on"); beep("tap"); }); }
+
+W.grupo = el => { el.innerHTML = `<div class="panel"><small>Apresentação de</small><div class="team">${["Antonella","Helena","Giuseppe","Murilo","Julia"].map(n=>`<span>${n}</span>`).join("")}</div></div>`; };
+
+W.perda = el => { el.innerHTML = flipCards([
+  ["tractor","Perda","Acontece antes da comida chegar até nós: na colheita, no armazém ou no caminhão. Exemplo: frutas que amassam na viagem."],
+  ["wastebasket","Desperdício","Comida boa que vai para o lixo no mercado, no restaurante, na escola ou em casa. Exemplo: o arroz que sobrou no prato."]]); bindFlips(el); };
+
+W.contador = el => {
+  el.innerHTML = `<div class="panel"><small>Desde que este slide abriu, o mundo jogou fora</small><span class="big" id="kg">0 kg</span><small id="ele">de comida</small></div>`;
+  const t0 = performance.now(), porSeg = 1.05e9*1000/(365*24*3600);
+  const tick = () => { const kg = (performance.now()-t0)/1000*porSeg; const k=$("kg"); if(!k) return;
+    k.textContent = fmt(kg)+" kg"; const e = kg/6000; $("ele").textContent = e < 1 ? "de comida" : `de comida: o peso de ${fmt(e)} elefante${e>=2?"s":""}!`; };
+  timers.push(setInterval(tick, 120));
+};
+
+W.onde = el => {
+  const d = [["Casas",60,"Seis de cada dez partes: sobras, comida estragada na geladeira e frutas esquecidas."],["Restaurantes e refeitórios",28,"Inclui lanchonetes e os refeitórios das escolas."],["Mercados",12,"Frutas e verduras machucadas ou que passaram da data."]];
+  el.innerHTML = `<div class="bars">${d.map(x=>`<button class="bar-b"><span class="lab"><span>${x[0]}</span><span>${x[1]}%</span></span><span class="track"><i data-w="${x[1]}"></i></span><span class="det">${x[2]}</span></button>`).join("")}</div><small style="color:var(--muted);font-weight:700">Fonte: ONU, Índice de Desperdício de Alimentos 2024</small>`;
+  growBars(el); el.querySelectorAll(".bar-b").forEach(b=>b.onclick=()=>{b.classList.toggle("on");beep("tap");});
+};
+function growBars(el){ requestAnimationFrame(()=>requestAnimationFrame(()=>el.querySelectorAll(".track i").forEach(t=>t.style.width=t.dataset.w*(t.dataset.max?100/t.dataset.max:1)+"%"))); }
+
+W.balanca = el => {
+  el.innerHTML = `<div class="panel"><small>Cada pessoa joga fora por ano, em casa, cerca de</small><span class="big">94 kg</span>
+  <div class="kids"><figure>${img("student","Colega")}32 kg</figure><span class="eq">+</span><figure>${img("student","Colega")}32 kg</figure><span class="eq">+</span><figure>${img("student","Colega")}30 kg</figure></div>
+  <small>Uma criança de 10 anos pesa, em média, uns 32 kg.</small></div>`;
+};
+
+W.campeoes = el => {
+  const d=[["Arroz",22],["Carne bovina",20],["Feijão",16],["Frango",15],["Todo o resto",27]];
+  el.innerHTML = `<div class="bars">${d.map(x=>`<div class="bar-b"><span class="lab"><span>${x[0]}</span><span>${x[1]}%</span></span><span class="track"><i data-w="${x[1]}" data-max="27"></i></span></div>`).join("")}</div><small style="color:var(--muted);font-weight:700">Parte de tudo o que as famílias jogam fora. Fonte: Embrapa e FGV, 2018</small>`;
+  growBars(el);
+};
+
+W.casa = el => { el.innerHTML = flipCards([
+  ["shopping_cart","Compra demais","Fazer uma lista e conferir o que já tem em casa antes de ir ao mercado."],
+  ["thermometer","Guarda errado","Verduras na gaveta da geladeira, sobras em pote fechado, pão bem embalado."],
+  ["magnifying_glass_tilted_left","Esquece no fundo","Primeiro que vence, primeiro que sai: o mais antigo vai para a frente."],
+  ["pot_of_food","Faz comida demais","Cozinhar a quantidade certa para quem vai comer e guardar o resto logo."],
+  ["broccoli","Joga casca e talo","Talos e folhas viram sopa, refogado e bolinho."],
+  ["calendar","Confunde a data","'Consumir de preferência' não é 'estragou'. Na dúvida, um adulto olha, cheira e decide."]]); bindFlips(el); };
+
+W.calculadora = el => {
+  el.innerHTML = `<div class="panel">
+    <div class="sl"><label for="alunos">Alunos na turma <output id="o-al">28</output></label><input type="range" id="alunos" min="10" max="40" value="28"></div>
+    <div class="sl"><label for="colheres">Colheres de comida que sobram no prato <output id="o-co">2</output></label><input type="range" id="colheres" min="0" max="8" value="2"></div>
+    <small>1 colher de sopa de arroz pesa uns 25 g · o ano escolar tem 200 dias de aula</small>
+    <span class="big" id="tot">0 kg</span><small id="tot2"></small><div class="melons" id="mel" aria-hidden="true"></div></div>`;
+  const calc = () => { const a=+$("alunos").value, c=+$("colheres").value; $("o-al").value=a; $("o-co").value=c;
+    const kg = a*c*25*200/1000, m = kg/10; $("tot").textContent = fmt(kg)+" kg por ano";
+    $("tot2").textContent = kg ? `É o peso de ${fmt(m)} melancias, ou ${fmt(kg*1000/400)} pratos de comida.` : "Prato limpo: nada vai para o lixo!";
+    $("mel").innerHTML = Array.from({length:Math.min(40,Math.round(m))},()=>img("watermelon")).join("") + (m>40?`<b style="align-self:center">+${fmt(m-40)}</b>`:""); };
+  $("alunos").oninput = calc; $("colheres").oninput = calc; calc();
+};
+
+W.agua = el => {
+  const d=[["red_apple","Maçã",125],["bread","Fatia de pão",40],["egg","Ovo",200],["glass_of_milk","Copo de leite",255],["chocolate_bar","Chocolate (100 g)",1700],["hamburger","Hambúrguer",2400]];
+  el.innerHTML = `<div class="foods">${d.map((x,n)=>`<button class="food" data-n="${n}">${img(x[0])}<span>${x[1]}</span><b>${fmt(x[2])} L</b></button>`).join("")}</div>
+  <div class="panel tank"><div class="box"><i id="lv"></i></div><div><small>Água jogada fora junto com a comida</small><span class="big" id="lit">0 L</span><small id="ban">Toque nos alimentos para jogar no lixo</small><div class="row" style="margin-top:6px"><button id="zera">Zerar</button></div></div></div>`;
+  let tot=0; const up=()=>{ $("lit").textContent=fmt(tot)+" L"; $("lv").style.height=Math.min(100,tot/5000*100)+"%";
+    $("ban").textContent = tot ? (b=>`Daria para ${fmt(b)} banho${Math.round(b)===1?"":"s"} de 15 minutos.`)(tot/135) : "Toque nos alimentos para jogar no lixo"; };
+  el.querySelectorAll(".food").forEach(b=>b.onclick=()=>{ tot+=d[b.dataset.n][2]; beep("tap"); up(); });
+  $("zera").onclick=()=>{tot=0;up();};
+};
+
+W.receitas = el => { el.innerHTML = flipCards([
+  ["banana","Banana bem madura","Vira vitamina, bolo de banana ou sorvete caseiro."],
+  ["bread","Pão amanhecido","Vira torrada, farinha de rosca ou pudim de pão."],
+  ["cooked_rice","Arroz que sobrou","Vira bolinho de arroz ou arroz de forno."],
+  ["broccoli","Talos e folhas","Brócolis, beterraba e cenoura viram sopa, refogado e suflê."],
+  ["seedling","Cascas e borra de café","Viram adubo na composteira e ajudam a horta a crescer."],
+  ["green_apple","Fruta feia","Tem o mesmo sabor! Vira suco ou salada de frutas."]]); bindFlips(el); };
+
+const QUIZ = [
+  ["Onde o mundo desperdiça mais comida?",["Nos mercados","Nas casas","Nos restaurantes"],1,"Seis de cada dez partes do desperdício acontecem dentro das casas."],
+  ["Quantas refeições o mundo joga fora por dia?",["Umas mil","Um milhão","Mais de 1 bilhão"],2,"Segundo a ONU, mais de 1 bilhão de refeições vão para o lixo todo dia."],
+  ["Qual alimento os brasileiros mais jogam fora?",["Arroz","Chocolate","Alface"],0,"O arroz lidera a lista da Embrapa, seguido de carne, feijão e frango."],
+  ["Sobrou arroz no almoço. O que é melhor fazer?",["Jogar fora","Deixar na panela em cima do fogão até amanhã","Guardar em pote fechado na geladeira e usar depois"],2,"Na geladeira, em pote fechado, ele pode virar até bolinho de arroz!"],
+  ["Quanto da merenda pode sobrar para ainda ser considerado aceitável?",["Até 10%","Metade do prato","Qualquer quantidade"],0,"Nutricionistas consideram aceitável até 10% de sobra."],
+  ["No que cascas de frutas e borra de café podem se transformar?",["Em nada, só lixo","Em adubo na composteira","Em plástico"],1,"Na composteira, viram adubo para plantas e hortas."]];
+W.quiz = el => {
+  let q=0, pts=0;
+  const draw = () => {
+    if (q===QUIZ.length){ const msg = pts>=5?"Vocês são guardiões da comida!":pts>=3?"Quase lá, guardiões em treinamento!":"Bora rever os slides e tentar de novo!";
+      el.innerHTML = `<div class="panel quiz"><small>Resultado</small><span class="big">${pts} de ${QUIZ.length}</span><p class="q" style="margin:0">${msg}</p><div class="row"><button class="go" id="re">Jogar de novo</button></div></div>`;
+      $("re").onclick=()=>{q=0;pts=0;draw();}; if(pts>=4) confete(); return; }
+    const [p,ops,ok,ex]=QUIZ[q];
+    el.innerHTML = `<div class="panel quiz"><div class="prog">${QUIZ.map((_,n)=>`<span class="${n<q?"d":""}"></span>`).join("")}</div><small>Pergunta ${q+1} de ${QUIZ.length} · ${pts} ponto${pts===1?"":"s"}</small><p class="q" style="margin:0">${esc(p)}</p>
+      <div class="opts">${ops.map((o,n)=>`<button class="opt" data-n="${n}">${esc(o)}</button>`).join("")}</div><p class="fb" id="fb" hidden></p><div class="row"><button class="go" id="nx" hidden>${q===QUIZ.length-1?"Ver resultado":"Próxima pergunta"}</button></div></div>`;
+    el.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ const n=+b.dataset.n; el.querySelectorAll(".opt").forEach(x=>{x.disabled=true; if(+x.dataset.n===ok) x.classList.add("ok");});
+      if(n===ok){pts++;beep("ok");} else {b.classList.add("no");beep("no");}
+      $("fb").hidden=false; $("fb").textContent=(n===ok?"Acertou! ":"Quase! ")+ex; $("nx").hidden=false; $("nx").focus(); });
+    $("nx").onclick=()=>{q++;draw();};
+  };
+  draw();
+};
+
+W.desafio = el => {
+  const dias=["Seg","Ter","Qua","Qui","Sex"]; let st=[0,0,0,0,0];
+  try{ const s=JSON.parse(localStorage.getItem("prato-limpo")||"null"); if(Array.isArray(s)&&s.length===5) st=s; }catch(e){}
+  el.innerHTML = `<div class="days">${dias.map((d,n)=>`<button class="day${st[n]?" on":""}" data-n="${n}" aria-pressed="${!!st[n]}">${img("fork_and_knife_with_plate")}${d}</button>`).join("")}</div><div class="panel"><small>Dias de prato limpo</small><span class="big" id="pl"></span></div>`;
+  const up=()=>{ const t=st.reduce((a,b)=>a+b,0); $("pl").textContent=`${t} de 5`+(t===5?" · Missão cumprida!":""); };
+  el.querySelectorAll(".day").forEach(b=>b.onclick=()=>{ const n=+b.dataset.n; st[n]=st[n]?0:1; b.classList.toggle("on",!!st[n]); b.setAttribute("aria-pressed",!!st[n]);
+    try{localStorage.setItem("prato-limpo",JSON.stringify(st));}catch(e){} beep(st[n]?"ok":"tap"); up(); if(st.every(Boolean)) confete(); });
+  up();
+};
+
+W.fontes = el => {
+  const f=[["ONU (PNUMA): Índice de Desperdício de Alimentos 2024","https://www.unep.org/pt-br/noticias-e-reportagens/comunicado-de-imprensa/mundo-joga-fora-mais-de-1-bilhao-de-refeicoes-por-dia"],
+    ["Embrapa: dados do relatório da ONU para o Brasil (94 kg)","https://embrapa.br/busca-de-noticias/-/noticia/87972089/world-squanders-over-1-billion-meals-a-day-according-to-un"],
+    ["Embrapa e FGV (2018): pesquisa sobre desperdício nas famílias brasileiras",""],
+    ["FNDE: Programa Nacional de Alimentação Escolar (PNAE)","https://www.gov.br/fnde/pt-br/acesso-a-informacao/acoes-e-programas/programas/pnae"],
+    ["Estudo de resto da merenda em escola pública de Cajobi (SP)","https://unifafibe.com.br/revistasonline/arquivos/cienciasnutricionaisonline/sumario/91/23042020165409.pdf"],
+    ["Water Footprint Network: pegada de água dos alimentos","https://www.waterfootprint.org/resources/interactive-tools/product-gallery/"],
+    ["Lei 14.016/2020: doação de alimentos","https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l14016.htm"]];
+  el.innerHTML = `<ul class="src">${f.map(x=>`<li>${x[1]?`<a href="${x[1]}" target="_blank" rel="noopener">${esc(x[0])}</a>`:esc(x[0])}</li>`).join("")}<li>Ilustrações: Fluent Emoji (Microsoft, licença livre MIT) · Voz da Tita gerada por inteligência artificial</li></ul>`;
+};
+
+/* ---------- Confete ---------- */
+function confete(){
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const c=$("confete"), x=c.getContext("2d"); c.hidden=false; c.width=innerWidth; c.height=innerHeight;
+  const cs=getComputedStyle(document.documentElement), cores=["--leaf","--tomato","--sun","--sky"].map(v=>cs.getPropertyValue(v).trim());
+  const ps=Array.from({length:160},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.5,v:2+Math.random()*4,s:6+Math.random()*8,r:Math.random()*6,c:cores[Math.random()*4|0]}));
+  let f=0; (function an(){ x.clearRect(0,0,c.width,c.height); ps.forEach(p=>{p.y+=p.v;p.x+=Math.sin((f+p.r*20)/18)*1.5;p.r+=.1; x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);x.restore();});
+    if(++f<200) requestAnimationFrame(an); else c.hidden=true; })();
+}
+
+/* ---------- Navegação e voz ---------- */
+$("dots").innerHTML = SLIDES.map((_,k)=>`<span data-k="${k}" title="Slide ${k+1}"><i></i></span>`).join("");
+const COR = {leaf:["--leaf","--leaf-bg"],tomato:["--tomato","--tomato-bg"],sun:["--sun","--sun-bg"],sky:["--sky","--sky-bg"]};
+
+function show(k, autoplay){
+  stopAll(); timers.forEach(clearInterval); timers=[];
+  i = Math.max(0, Math.min(SLIDES.length-1, k));
+  const s = SLIDES[i], [c,cb] = COR[s.cor];
+  document.body.style.setProperty("--c", `var(${c})`); document.body.style.setProperty("--c-bg", `var(${cb})`);
+  const pic=$("pic"); pic.querySelectorAll("img.it").forEach(e=>e.remove()); pic.classList.remove("enter"); void pic.offsetWidth; pic.classList.add("enter");
+  s.cena.forEach(([n,x,y,sz,r],m)=>{ const e=document.createElement("img"); e.className="it"; e.src=`img/${n}.png`; e.alt=""; e.style.cssText=`left:${x}%;top:${y}%;--s:${sz}%;--r:${r}deg;--d:${m*.12}s`; pic.insertBefore(e,pic.firstChild); });
+  $("eyebrow").textContent = s.eyebrow; $("titulo").textContent = s.titulo;
+  $("pts").innerHTML = s.pontos.map((p,n)=>`<li><b>${n+1}</b><span>${esc(p)}</span></li>`).join("");
+  $("pts").hidden = !s.pontos.length;
+  $("widget").innerHTML = ""; if (s.widget && W[s.widget]) W[s.widget]($("widget"));
+  $("fala").textContent = s.fala; $("erro").hidden = true;
+  $("count").textContent = `${i+1} / ${SLIDES.length}`;
+  $("prev").disabled = i===0; $("next").disabled = i===SLIDES.length-1;
+  [...$("dots").children].forEach((d,n)=>{ d.firstChild.style.width = n<i ? "100%" : "0"; });
+  $("stage").scrollTop = 0;
+  try{ history.replaceState(null,"","#s"+(i+1)); }catch(e){}
+  load(i).then(u => { if (SLIDES[i] !== s) return; aud.src = u; if (autoplay) play(); }).catch(()=>{ if (autoplay && SLIDES[i]===s) play(); });
+  load(i+1).catch(()=>{});
+}
+const cache = {};
+function load(k){
+  const s = SLIDES[k]; if (!s) return Promise.resolve(null);
+  if (!cache[k]) cache[k] = fetch(`audio/${s.id}.mp3`).then(r => { if (!r.ok) throw new Error(r.status); return r.blob(); })
+    .then(b => URL.createObjectURL(b)).catch(e => { delete cache[k]; throw e; });
+  return cache[k];
+}
+function stopAll(){ aud.pause(); aud.removeAttribute("src"); aud.load(); try{speechSynthesis.cancel();}catch(e){} usingTTS=false; setPlaying(false); }
+function setPlaying(v){ playing=v; document.body.classList.toggle("playing", v); $("play").textContent = v ? "❚❚ Pausar" : (aud.currentTime>0 && !aud.ended ? "▶ Continuar" : "▶ Ouvir"); }
+function play(){
+  $("erro").hidden = true;
+  if (aud.src) { aud.play().then(()=>setPlaying(true)).catch(()=>falar()); return; }
+  load(i).then(u => { aud.src = u; return aud.play(); }).then(()=>setPlaying(true)).catch(()=>falar());
+}
+/* Plano B: voz do próprio aparelho, se o áudio gravado não carregar */
+function falar(){
+  if (!("speechSynthesis" in window)) { $("erro").hidden=false; $("erro").textContent="A voz não carregou. Toque em Ouvir de novo ou leia o texto abaixo."; return; }
+  const vs = speechSynthesis.getVoices().filter(v=>/^pt/i.test(v.lang)), v = vs.find(v=>/pt-BR/i.test(v.lang)) || vs[0];
+  const partes = SLIDES[i].fala.match(/[^.!?]+[.!?]*/g) || [SLIDES[i].fala], k0 = i;
+  speechSynthesis.cancel(); usingTTS = true; setPlaying(true);
+  partes.forEach((t,n)=>{ const u=new SpeechSynthesisUtterance(t.trim()); u.lang="pt-BR"; if(v) u.voice=v; u.rate=.95;
+    if(n===partes.length-1) u.onend=()=>{ if(i!==k0||!usingTTS) return; usingTTS=false; setPlaying(false); fim(); };
+    speechSynthesis.speak(u); });
+}
+function fim(){ if ($("auto").checked && i < SLIDES.length-1) setTimeout(()=>show(i+1, true), 900); }
+$("play").onclick = () => { if (playing) { if (usingTTS){ speechSynthesis.cancel(); usingTTS=false; setPlaying(false);} else { aud.pause(); setPlaying(false);} } else play(); };
+$("prev").onclick = () => show(i-1, playing);
+$("next").onclick = () => show(i+1, playing);
+$("dots").onclick = e => { const d = e.target.closest("span[data-k]"); if (d) show(+d.dataset.k, playing); };
+aud.ontimeupdate = () => { const d=$("dots").children[i]; if (d && aud.duration) d.firstChild.style.width = (aud.currentTime/aud.duration*100)+"%"; };
+aud.onended = () => { setPlaying(false); fim(); };
+document.addEventListener("keydown", e => {
+  if (["INPUT","SUMMARY","TEXTAREA"].includes(e.target.tagName)) return;
+  if (e.key==="ArrowRight") show(i+1, playing);
+  else if (e.key==="ArrowLeft") show(i-1, playing);
+  else if (e.key===" " && e.target.tagName!=="BUTTON"){ e.preventDefault(); $("play").click(); }
+});
+let tx=null; $("stage").addEventListener("touchstart",e=>{ if(!e.target.closest("input,button")) tx=e.touches[0].clientX; },{passive:true});
+$("stage").addEventListener("touchend",e=>{ if(tx===null) return; const dx=e.changedTouches[0].clientX-tx; tx=null; if(Math.abs(dx)>70) show(i+(dx<0?1:-1), playing); });
+const fromHash = () => { const h = location.hash.replace("#s",""); return /^\d+$/.test(h) ? +h-1 : 0; };
+addEventListener("hashchange", () => { if (fromHash() !== i) show(fromHash(), false); });
+show(fromHash(), false);
+</script>
+
+</body></html>
