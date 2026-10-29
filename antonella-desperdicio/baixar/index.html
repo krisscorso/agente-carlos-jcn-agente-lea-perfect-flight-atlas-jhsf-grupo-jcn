@@ -1,0 +1,87 @@
+<title>Baixar Desperdício de Alimentos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800&display=swap">
+<style>
+/* Layout: uma coluna, dois botões grandes; feito para o celular */
+:root{--bg:#F3F8EE;--surface:#FFFFFF;--line:#D3E2C6;--fg:#1F3326;--muted:#5D6F60;--leaf:#2E9B4E;--tomato:#E0452B;--on:#FFFFFF;
+--display:"Baloo 2",ui-rounded,system-ui,sans-serif;--body:"Nunito",ui-rounded,system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#122018;--surface:#1A2C21;--line:#2F4A38;--fg:#EEF6EA;--muted:#A9BEAD;--leaf:#5CCB7B;--tomato:#FF7A5E;--on:#10200F;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#122018;--surface:#1A2C21;--line:#2F4A38;--fg:#EEF6EA;--muted:#A9BEAD;--leaf:#5CCB7B;--tomato:#FF7A5E;--on:#10200F;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:18px/1.5 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 40px}
+main{max-width:520px;margin:0 auto;display:grid;gap:18px}
+h1{font:800 2rem/1.1 var(--display);margin:0;text-wrap:balance}
+p{margin:0}
+.muted{color:var(--muted);font-weight:600}
+.card{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:18px;display:grid;gap:10px}
+.card h2{font:800 1.25rem/1.2 var(--display);margin:0}
+button{font:800 1.15rem/1.2 var(--body);border:0;border-radius:16px;padding:18px 20px;cursor:pointer;color:var(--on);background:var(--leaf);min-height:60px;width:100%}
+button.alt{background:var(--tomato)}
+button:disabled{opacity:.6;cursor:default}
+.st{font-weight:700;min-height:1.4em}
+.st.ok{color:var(--leaf)}.st.no{color:var(--tomato)}
+ol{margin:0;padding-left:22px;display:grid;gap:6px}
+a{color:var(--leaf);font-weight:800;word-break:break-all}
+:focus-visible{outline:3px solid var(--tomato);outline-offset:2px}
+</style>
+
+<main>
+  <div>
+    <h1>Desperdício de Alimentos</h1>
+    <p class="muted">Trabalho de Antonella, Helena, Giuseppe, Murilo e Julia</p>
+  </div>
+
+  <div class="card">
+    <h2>Vídeo com a voz da Tita</h2>
+    <p class="muted">6 minutos · 9 MB · abre em qualquer celular</p>
+    <button id="bv">Salvar o vídeo no celular</button>
+    <p class="st" id="sv"></p>
+  </div>
+
+  <div class="card">
+    <h2>Slides em PDF</h2>
+    <p class="muted">15 páginas · 1,6 MB · sem áudio</p>
+    <button class="alt" id="bp">Salvar o PDF no celular</button>
+    <p class="st" id="sp"></p>
+  </div>
+
+  <div class="card">
+    <h2>Como mandar no WhatsApp</h2>
+    <ol>
+      <li>Toque em um dos botões acima.</li>
+      <li>Na tela que abrir, escolha <b>Salvar vídeo</b> (vai para Fotos), <b>Salvar em Arquivos</b> ou direto <b>WhatsApp</b>.</li>
+      <li>Quem receber abre normalmente, sem precisar de nenhum aplicativo.</li>
+    </ol>
+  </div>
+
+  <div class="card" id="fb" hidden>
+    <h2>Se o botão não funcionar</h2>
+    <p>Abra este endereço no Safari ou no Chrome. O vídeo é baixado direto, sem conta nenhuma:</p>
+    <p><a id="raw" href="https://raw.githubusercontent.com/krisscorso/agente-carlos-jcn-agente-lea-perfect-flight-atlas-jhsf-grupo-jcn/claude/food-waste-research-presentation-terh38/antonella-desperdicio/Desperdicio-de-Alimentos-Antonella-Helena-Giuseppe-Murilo-Julia.mp4" target="_blank" rel="noopener">Baixar o vídeo pelo navegador</a></p>
+  </div>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const FILES={bv:["video.mp4","Desperdicio-de-Alimentos-Antonella-Helena-Giuseppe-Murilo-Julia.mp4","sv"],bp:["Desperdicio-de-Alimentos-Slides.pdf","Desperdicio-de-Alimentos-Slides.pdf","sp"]};
+const cache={};
+let dl=null;
+(async()=>{ dl = window.claude?.use ? await claude.use("downloads") : null; if(!dl){ $("fb").hidden=false; $("bv").disabled=true; $("bp").disabled=true; $("sv").textContent="Salvar por aqui não está disponível neste aplicativo. Use o link abaixo."; } })();
+for (const id of Object.keys(FILES)) $(id).onclick = async () => {
+  const [src,name,st]=FILES[id], s=$(st), b=$(id);
+  if(!dl){ $("fb").hidden=false; return; }
+  b.disabled=true; s.className="st"; s.textContent="Preparando o arquivo…";
+  try{
+    if(!cache[src]){ const r=await fetch(src); if(!r.ok) throw new Error("download "+r.status); cache[src]=await r.blob(); }
+    s.textContent="Agora escolha onde salvar…";
+    await dl.save({filename:name, data:cache[src]});
+    s.className="st ok"; s.textContent="Pronto! O arquivo foi entregue ao celular.";
+  }catch(e){
+    s.className="st no";
+    if(e && e.code==="declined") s.textContent="Você cancelou. Toque de novo quando quiser.";
+    else if(e && e.code==="rate_limited") s.textContent="Espere um instante e toque de novo.";
+    else { s.textContent="Não deu por aqui ("+(e&&(e.code||e.message)||"erro")+"). Use o link abaixo."; $("fb").hidden=false; }
+  }
+  b.disabled=false;
+};
+</script>
